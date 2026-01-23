@@ -55,6 +55,23 @@ def summarize_session(df, session_name, results_folder, weight=None, age=None):
     # Movement load
     movement_load, movement_load_intensity = compute_movement_from_hr(hr_corr, rest_hr)
 
+    # --- Experimental Metrics for new 'Metrics' Tab ---
+    # Session hour (from timestamp)
+    session_hour = hr_corr.index[0].hour if not hr_corr.empty else 0
+    
+    # Session type heuristic
+    # Readiness sessions are typically shorter (< 15 mins) and lower intensity
+    session_type = "Readiness" if (duration_min < 15 and avg_hr < (rest_hr + 30)) else "Training"
+    
+    # Session Quality (0-100)
+    # Simple proxy: percentage of non-zero/valid data points vs duration
+    expected_points = (duration_min * 60) / 3 # assuming 3s bins
+    session_quality = min(100, round((len(hr_corr) / expected_points) * 100, 1)) if expected_points > 0 else 0
+    
+    # Recovery Beats
+    # Delta between max HR and HR at the end of the session (simple proxy)
+    recovery_beats = round(max_hr - hr_corr.iloc[-1], 1) if not hr_corr.empty else 0
+
     return {
         "session": session_name,
         "avg_hr": round(avg_hr, 2),
@@ -73,5 +90,9 @@ def summarize_session(df, session_name, results_folder, weight=None, age=None):
         "vo2_max": round(vo2_max, 2),
         "movement_load": round(movement_load, 2),
         "movement_load_intensity": round(movement_load_intensity, 2),
+        "session_type": session_type,
+        "session_hour": session_hour,
+        "session_quality": session_quality,
+        "recovery_beats": recovery_beats,
         **zones
     }

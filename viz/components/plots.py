@@ -19,6 +19,11 @@ from viz.plots.movement_plots import (
 from viz.plots.zone_plots import (
     create_zones_stacked_plotly, create_zones_pie_plotly, create_zones_heatmap_plotly
 )
+from viz.plots.metrics_tab_plots import (
+    create_hrv_recovery_trend, create_load_vs_hrv_trend, create_weekly_hr_metrics,
+    create_weekly_zone_split, create_avg_training_load_line, create_weekly_acwr_line,
+    create_session_time_hrv_load, create_session_quality_graph
+)
 
 def create_hrv_plots(df_filtered):
     return (
@@ -63,4 +68,18 @@ def create_zone_plots(df_filtered):
         create_zones_stacked_plotly(df_filtered),
         create_zones_pie_plotly(df_filtered),
         create_zones_heatmap_plotly(df_filtered)
+    )
+
+def create_metrics_tab_plots(df_filtered):
+    return (
+        create_hrv_recovery_trend(df_filtered),
+        create_load_vs_hrv_trend(df_filtered),
+        create_weekly_hr_metrics(df_filtered, "Readiness"),
+        create_weekly_hr_metrics(df_filtered, "Training"),
+        create_weekly_zone_split(df_filtered),
+        create_avg_training_load_line(df_filtered),
+        create_weekly_acwr_line(df_filtered),
+        create_session_time_hrv_load(df_filtered, "Morning"),
+        create_session_time_hrv_load(df_filtered, "Afternoon and Evening"),
+        create_session_quality_graph(df_filtered)
     )

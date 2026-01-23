@@ -166,6 +166,40 @@ def create_tabs():
                 dbc.Col([dcc.Graph(id='zones-heatmap')], width=6),
             ])
         ]),
+
+        # Metrics Tab
+        dbc.Tab(label=" Metrics", children=[
+            html.H3("Heart Rate and Recovery Metrics", className="mt-3 mb-3", style={'color': '#2c3e50'}),
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='hrv-recovery-trend')], width=12),
+            ]),
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='load-vs-hrv-trend')], width=12),
+            ], className="mt-4"),
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='hr-metrics-readiness')], width=6),
+                dbc.Col([dcc.Graph(id='hr-metrics-training')], width=6),
+            ], className="mt-4"),
+            
+            html.H3("Workload and Training Metrics", className="mt-5 mb-3", style={'color': '#2c3e50'}),
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='weekly-zone-split')], width=12),
+            ]),
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='avg-load-line')], width=6),
+                dbc.Col([dcc.Graph(id='weekly-acwr-line')], width=6),
+            ], className="mt-4"),
+            
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='morning-hrv-load')], width=12),
+            ], className="mt-5"),
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='evening-hrv-load')], width=12),
+            ], className="mt-4"),
+            dbc.Row([
+                dbc.Col([dcc.Graph(id='session-quality-graph')], width=12),
+            ], className="mt-4"),
+        ]),
     ])
 
 def create_footer():
