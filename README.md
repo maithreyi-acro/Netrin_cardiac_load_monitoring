@@ -9,7 +9,7 @@ A complete pipeline for processing cardiac session data, computing performance m
 Raw Data → Metrics Computation → Metrics Dataset → Visualization → Dashboard
 ```
 
-## Project Structure
+## Structure
 ```
 cardiac-load-monitoring/
 ├── main.py                     # Metrics computation pipeline
@@ -65,13 +65,5 @@ Or use the launcher:
 python run_dashboard.py
 ```
 
-
-**Metric Categories:**
--  **HRV Metrics**: RMSSD, SDNN, pNN50
--  **Training Load**: Load, Intensity, ACWR, Acute/Chronic
--  **Heart Rate**: Resting, Average, Max, Min
--  **Metabolic**: EPOC, VO₂, VO₂ Max, Energy Expenditure
--  **Movement**: Load, Intensity
--  **HR Zones**: Distribution, Heatmap, Pie Chart
 
 
