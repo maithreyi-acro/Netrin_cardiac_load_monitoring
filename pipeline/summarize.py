@@ -19,10 +19,6 @@ def summarize_session(df, session_name, results_folder, weight=None, age=None):
     if hr_corr.empty:
         return None
 
-    # Save corrected HR series
-    save_path = os.path.join(results_folder, f"{session_name}_hr_corrected.csv")
-    hr_corr.to_csv(save_path, index=True, header=["hr_corrected"])
-
     # Basic session stats
     avg_hr, max_hr, min_hr, rest_hr = compute_session_stats(hr_corr)
 
