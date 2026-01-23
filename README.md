@@ -65,8 +65,6 @@ Or use the launcher:
 python run_dashboard.py
 ```
 
-**Access:** http://127.0.0.1:8050/
-
 
 **Metric Categories:**
 -  **HRV Metrics**: RMSSD, SDNN, pNN50
