@@ -67,34 +67,13 @@ python run_dashboard.py
 
 **Access:** http://127.0.0.1:8050/
 
-## Dashboard Features
 
-**6 Metric Categories:**
-- 📊 **HRV Metrics**: RMSSD, SDNN, pNN50
-- 💪 **Training Load**: Load, Intensity, ACWR, Acute/Chronic
-- ❤️ **Heart Rate**: Resting, Average, Max, Min
-- 🔥 **Metabolic**: EPOC, VO₂, VO₂ Max, Energy Expenditure
-- 🏃 **Movement**: Load, Intensity
-- 🎯 **HR Zones**: Distribution, Heatmap, Pie Chart
+**Metric Categories:**
+-  **HRV Metrics**: RMSSD, SDNN, pNN50
+-  **Training Load**: Load, Intensity, ACWR, Acute/Chronic
+-  **Heart Rate**: Resting, Average, Max, Min
+-  **Metabolic**: EPOC, VO₂, VO₂ Max, Energy Expenditure
+-  **Movement**: Load, Intensity
+-  **HR Zones**: Distribution, Heatmap, Pie Chart
 
-**Interactive Features:**
-- Hover tooltips with exact values
-- Date range filtering (7/14/30/60/90 days or all)
-- Zoom, pan, and explore data
-- Clean, data-focused interface
 
-## Setup
-```bash
-pip install -r requirements.txt
-```
-
-## Dependencies
-- **Data Processing**: numpy, pandas
-- **Visualization**: plotly, dash, dash-bootstrap-components
-- **Optional**: matplotlib, seaborn
-
-## Key Files
-- `main.py` - Metric computation pipeline
-- `app.py` - Dashboard application
-- `config/settings.py` - All constants
-- `viz/components/` - Modular dashboard components
