@@ -63,14 +63,33 @@ def compute_session_stats(hr_corr):
 
     return avg_hr, max_hr, min_hr, rest_hr
 
-def compute_session_stats(hr_corr):
+def compute_session_stats(hr_corr, hr_max_ref):
     if len(hr_corr) == 0:
-        return 0.0, 0.0, 0.0, 0.0
+        return {
+            "avg_hr": 0.0,
+            "max_hr": 0.0,
+            "min_hr": 0.0,
+            "rest_hr": 0.0,
+            "avg_hr_pct": 0.0,
+            "max_hr_pct": 0.0,
+            "min_hr_pct": 0.0,
+        }
 
     avg_hr = float(hr_corr.mean())
-
     min_hr = float(np.percentile(hr_corr, 5))
     max_hr = float(np.percentile(hr_corr, 95))
-
     rest_hr = min_hr
-    return avg_hr, max_hr, min_hr, rest_hr
+
+    avg_hr_pct = (avg_hr / hr_max_ref) * 100
+    max_hr_pct = (max_hr / hr_max_ref) * 100
+    min_hr_pct = (min_hr / hr_max_ref) * 100
+
+    return {
+        "avg_hr": avg_hr,
+        "max_hr": max_hr,
+        "min_hr": min_hr,
+        "rest_hr": rest_hr,
+        "avg_hr_pct": avg_hr_pct,
+        "max_hr_pct": max_hr_pct,
+        "min_hr_pct": min_hr_pct,
+    }

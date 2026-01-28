@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from config.settings import DEFAULT_WEIGHT, DEFAULT_AGE
+from config.settings import HR_CAP
 from metrics import (
     extract_hr, smooth_hr, compute_session_stats,
     compute_hrr, compute_trimp, compute_intensity,
@@ -21,6 +21,10 @@ def summarize_session(df, session_name, results_folder, weight=None, age=None):
 
     # Basic session stats
     avg_hr, max_hr, min_hr, rest_hr = compute_session_stats(hr_corr)
+    avg_hr_pct = (avg_hr / HR_CAP) * 100 if HR_CAP > 0 else 0.0
+    max_hr_pct = (max_hr / HR_CAP) * 100 if HR_CAP > 0 else 0.0
+    min_hr_pct = (min_hr / HR_CAP) * 100 if HR_CAP > 0 else 0.0
+    
 
     # HRR
     hrr = compute_hrr(hr_corr, rest_hr, max_hr)
@@ -78,6 +82,10 @@ def summarize_session(df, session_name, results_folder, weight=None, age=None):
         "min_hr": round(min_hr, 2),
         "max_hr": round(max_hr, 2),
         "rest_hr": round(rest_hr, 2),
+        "hr_max_ref": round(HR_CAP, 1),
+        "avg_hr_pct": round(avg_hr_pct, 2),
+        "min_hr_pct": round(min_hr_pct, 2),
+        "max_hr_pct": round(max_hr_pct, 2),
         "training_load": round(training_load, 3),
         "training_intensity": round(training_intensity, 3),
         "sdnn": round(sdnn, 2),
